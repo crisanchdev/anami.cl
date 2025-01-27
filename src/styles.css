@@ -109,32 +109,66 @@
             display: none;
         }
 
-        .nav-links {
-            display: none;
-        }
+/* Ocultar menú móvil por defecto */
+.nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #002171;
+    z-index: 1000;
+    padding: 10px 0;
+}
 
-        .nav-links a {
-            font-family: 'Blinker', sans-serif;
-            font-weight: 400;
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-        }
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    text-align: center;
+}
 
-        .menu-icon {
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+.nav-links a:hover {
+    background-color: #00509e;
+}
 
-        @media (max-width: 768px) {
-            .logo-desktop {
-                display: none;
-            }
+/* Mostrar menú en pantallas grandes */
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background-color: transparent;
+    }
 
-            .logo-mobile {
-                display: block;
-            }
-        }
+    .nav-links a {
+        padding: 0 10px;
+    }
+}
+
+/* Estilo del ícono del menú */
+.menu-icon {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    display: block;
+    z-index: 1100;
+}
+
+/* Ocultar ícono del menú en pantallas grandes */
+@media (min-width: 768px) {
+    .menu-icon {
+        display: none;
+    }
+}
+
+/* Mostrar menú móvil cuando se active */
+.nav-links.active {
+    display: flex;
+}
+
 
         /* Hero section styles */
         .hero {
