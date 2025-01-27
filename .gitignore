@@ -1,0 +1,43 @@
+# Dependencias de Composer
+/vendor/
+composer.lock
+
+# Configuración de entornos
+.env
+.env.local
+.env.*.local
+
+# Archivos y carpetas temporales
+/tmp/
+/cache/
+
+# Archivos de registro
+*.log
+
+# Archivos de sesiones
+sessions/
+
+# Archivos de subida
+/uploads/
+*.bak
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de depuración
+*.swp
+*.swo
+*.bak
+
+# Configuración del IDE
+.idea/
+.vscode/
+
+# Configuración de PHPUnit
+.phpunit.result.cache
+
+# Backups
+*.zip
+*.tar.gz
+*.bak
