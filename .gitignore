@@ -1,5 +1,7 @@
 # Dependencias de Composer
 /vendor/
+/src/vendor/
+
 composer.lock
 
 # Configuración de entornos
