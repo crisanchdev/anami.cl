@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anami.cl/sitemap.xml
