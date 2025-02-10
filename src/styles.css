@@ -433,7 +433,20 @@
             justify-content: center;
         }
 
-        .slide:nth-child(1) {
+                /* Imagen específica para cada slide */
+                .slide-1 {
+                    background-image: url("images/slide-1.jpg");
+                }
+        
+                .slide-2 {
+                    background-image: url("images/slide-2.jpg");
+                }
+        
+                .slide-3 {
+                    background-image: url("images/slide-3.jpg");
+                }
+
+        /* .slide:nth-child(1) {
             background-image: url('/placeholder.svg?height=1080&width=1920');
         }
 
@@ -443,7 +456,7 @@
 
         .slide:nth-child(3) {
             background-image: url('/placeholder.svg?height=1080&width=1920');
-        }
+        } */
 
         .slide-content {
             text-align: center;
