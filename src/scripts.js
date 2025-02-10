@@ -30,14 +30,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// // Form submission (you would typically send this to a server)
-const form = document.querySelector('.contact-form');
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
-    form.submit();
-    form.reset();
-});
 
 // // Slider functionality
 const slider = document.querySelector('.slider');
@@ -63,3 +55,23 @@ nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
 // Auto-advance slides every 5 seconds
 setInterval(() => showSlide(currentSlide + 1), 5000);
 
+$(document).ready(function () {
+    $("#contactForm").submit(function (event) {
+        event.preventDefault(); // Evitar la recarga de la página
+
+        let formData = $(this).serialize(); // Serializa los datos del formulario
+        $.ajax({
+            type: "POST",
+            url: "form.php",
+            data: formData,
+            dataType: "text",
+            success: function (response) {
+                $("#form-feedback").html('<p class="success-message">' + response + '</p>');
+                $("#contactForm")[0].reset(); // Limpiar el formulario después de enviar
+            },
+            error: function (xhr, status, error) {
+                $("#form-feedback").html('<p class="error-message">Error al enviar: ' + error + '</p>');
+            }
+        });
+    });
+});

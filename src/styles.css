@@ -594,3 +594,18 @@
                         margin: 0 1rem;
                     }
                 }
+
+                                #form-feedback {
+                                    margin-top: 15px;
+                                    text-align: center;
+                                }
+                
+                                .success-message {
+                                    color: green;
+                                    font-weight: bold;
+                                }
+                
+                                .error-message {
+                                    color: red;
+                                    font-weight: bold;
+                                }
