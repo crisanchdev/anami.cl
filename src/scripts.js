@@ -49,9 +49,6 @@ function showSlide(index) {
     slider.style.transform = `translateX(-${currentSlide * 100}%)`;
 }
 
-prevButton.addEventListener('click', () => showSlide(currentSlide - 1));
-nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
-
 // Auto-advance slides every 5 seconds
 setInterval(() => showSlide(currentSlide + 1), 5000);
 
@@ -60,6 +57,7 @@ $(document).ready(function () {
         event.preventDefault(); // Evitar la recarga de la página
 
         let formData = $(this).serialize(); // Serializa los datos del formulario
+        console.log(formData); //
         $.ajax({
             type: "POST",
             url: "form.php",
