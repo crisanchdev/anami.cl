@@ -1,38 +1,24 @@
 <?php
-require 'vendor/autoload.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Recoge los datos enviados por el formulario
+    $data = $_POST; // Se esperan campos: name, email, message
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+    // URL del webhook de Make (reemplaza con tu URL real)
+    $webhookUrl = 'https://hook.us2.make.com/xc3ch214gu399yqmjxvypneejrmqkwpf';
 
-// Depuración: Verificar que los datos lleguen correctamente
-if (!isset($_POST['name'], $_POST['email'], $_POST['message'])) {
-    echo "Error: Todos los campos son obligatorios.";
-    exit;
-}
-$name    = trim($_POST['name']);
-$email   = trim($_POST['email']);
-$message = trim($_POST['message']);
+    // Inicializa cURL para enviar los datos al webhook de Make
+    $ch = curl_init($webhookUrl);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-$mail = new PHPMailer(true);
-try {
-    $mail->isSMTP();
-    $mail->Host = 'mailhog';
-    $mail->SMTPAuth = false;
-    $mail->Port = 1025;
+    // Ejecuta la petición y captura la respuesta (opcional)
+    $response = curl_exec($ch);
+    curl_close($ch);
 
-    $mail->setFrom('no-reply@anami.cl', 'Anami SpA');
-    $mail->addAddress('anami.empresa@gmail.com');
-
-    $mail->isHTML(true);
-    $mail->Subject = 'Nuevo mensaje de tu sitio web Anami SpA';
-    $mail->Body = "
-        <h3>Datos del formulario:</h3>
-        <strong>Nombre:</strong> {$name}<br>
-        <strong>Email:</strong> {$email}<br>
-        <strong>Mensaje:</strong> {$message}
-    ";
-    $mail->send();
-    echo '¡Correo enviado exitosamente!';
-} catch (Exception $e) {
-    echo "No se pudo enviar el correo. Error: {$mail->ErrorInfo}";
+    // Envía una respuesta al navegador para confirmar el envío
+    echo "¡Mensaje enviado con éxito!";
+} else {
+    // Si no se recibe un POST, se muestra un mensaje de error
+    echo "Método no permitido";
 }
